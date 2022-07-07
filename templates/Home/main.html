@@ -1,0 +1,188 @@
+{% extends '_base.html' %}
+{% block header %}
+    <style>
+table {
+  width: 30%;
+  align-self: center;
+  margin-block-end: 28px;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+{% endblock %}
+{% block content %}
+    <h2>{{ user }} s</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Add</button>
+
+    </form>
+    <p>{{ name }} : {{ cal }}</p>
+    {% if error %}
+        {{ error }}
+    {% endif %}
+    <hr>
+    <br>
+    
+    {% if day0 %}
+        <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Count</th>
+                    <th>Calorie</th>
+                    <th>Date</th>
+                </tr>
+
+                    {% for i in day0 %}
+                        <tr>
+                            <td>{{ i.name }}</td>
+                            <td>{{ i.count }}</td>
+                            <td>{{ i.calorie }}</td>
+                            <td>{{ i.date | date:"M, d"}}</td>
+
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>{{ cal0 }}</td>
+                    </tr>
+
+
+        </table>
+    {% endif %}
+    {% if day1 %}
+        <table align="right">
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Calorie</th>
+                <th>Date</th>
+            </tr>
+            {% for i in day1 %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.calorie }}</td>
+                    <td>{{ i.date | date:"M, d"}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ cal1 }}</td>
+            </tr>
+       </table>
+    {% endif %}
+    {% if day2 %}
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Calorie</th>
+                <th>Date</th>
+            </tr>
+            {% for i in day2 %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.calorie }}</td>
+                    <td>{{ i.date | date:"M, d"}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ cal2 }}</td>
+            </tr>
+       </table>
+    {% endif %}
+    {% if day3 %}
+        <table align="right">
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Calorie</th>
+                <th>Date</th>
+            </tr>
+            {% for i in day3 %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.calorie }}</td>
+                    <td>{{ i.date | date:"M, d"}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ cal3 }}</td>
+            </tr>
+       </table>
+    {% endif %}
+    {% if day4 %}
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Calorie</th>
+                <th>Date</th>
+            </tr>
+            {% for i in day4 %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.calorie }}</td>
+                    <td>{{ i.date | date:"M, d"}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ cal4 }}</td>
+            </tr>
+       </table>
+    {% endif %}
+    {% if day5 %}
+        <table align="right">
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Calorie</th>
+                <th>Date</th>
+            </tr>
+            {% for i in day5 %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.calorie }}</td>
+                    <td>{{ i.date | date:"M, d"}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ cal5 }}</td>
+            </tr>
+       </table>
+    {% endif %}
+    {% if day6 %}
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Calorie</th>
+                <th>Date</th>
+            </tr>
+            {% for i in day6 %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.calorie }}</td>
+                    <td>{{ i.date | date:"M, d"}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ cal6 }}</td>
+            </tr>
+       </table>
+    {% endif %}
+
+
+{% endblock %}
