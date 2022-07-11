@@ -5,7 +5,10 @@ from datetime import datetime, timedelta
 from Home.forms import AddForm
 from Home.models import CalorieModel
 from django.db.models import Sum, Q
+from django.contrib.auth.decorators import login_required
 
+
+@login_required()
 def main_view(request):
     user = request.user
     today = datetime.now()
@@ -40,4 +43,10 @@ def main_view(request):
         sum_cal = sum_calorie['calorie__sum']
         context[f'cal{i}'] = sum_cal
     context['form'] = form
+    week_ago = today - timedelta(days=7)
+    sum_week = CalorieModel.objects.filter(Q(user=request.user) & Q(date__range=[week_ago, today])).aggregate(
+        Sum('calorie'))
+    s_week = sum_week['calorie__sum']
+
+    context['sum_week'] = s_week
     return render(request, 'Home/main.html', context)

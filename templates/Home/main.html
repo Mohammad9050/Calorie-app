@@ -16,6 +16,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 </style>
+
 {% endblock %}
 {% block content %}
     <h2>{{ user }} s</h2>
@@ -26,6 +27,7 @@ tr:nth-child(even) {
 
     </form>
     <p>{{ name }} : {{ cal }}</p>
+    <p>total calorie in week : {{ sum_week }}</p>
     {% if error %}
         {{ error }}
     {% endif %}
