@@ -44,9 +44,11 @@ def main_view(request):
         context[f'cal{i}'] = sum_cal
     context['form'] = form
     week_ago = today - timedelta(days=7)
+
     sum_week = CalorieModel.objects.filter(Q(user=request.user) & Q(date__range=[week_ago, today])).aggregate(
         Sum('calorie'))
-    s_week = sum_week['calorie__sum']
-
-    context['sum_week'] = s_week
+    sum_month = CalorieModel.objects.filter(Q(user=request.user) & Q(date__month=today.month)).aggregate(
+        Sum('calorie'))
+    context['sum_week'] = sum_week['calorie__sum']
+    context['sum_month'] = sum_month['calorie__sum']
     return render(request, 'Home/main.html', context)
