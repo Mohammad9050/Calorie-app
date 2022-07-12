@@ -38,7 +38,7 @@ def main_view(request):
         form = AddForm()
     for i in range(7):
         week_day = today - timedelta(days=i)
-        context[f'day{i}'] = CalorieModel.objects.filter(date=week_day)
+        context[f'day{i}'] = CalorieModel.objects.filter(Q(user=request.user) & Q(date=week_day))
         sum_calorie = CalorieModel.objects.filter(Q(user=request.user) & Q(date=week_day)).aggregate(Sum('calorie'))
         sum_cal = sum_calorie['calorie__sum']
         context[f'cal{i}'] = sum_cal
