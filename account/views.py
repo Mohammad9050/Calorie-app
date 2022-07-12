@@ -10,10 +10,22 @@ from account.forms import SignUpForm
 import requests
 
 
-class SignUpView(CreateView):
-    form_class = SignUpForm
-    success_url = reverse_lazy('main')
-    template_name = 'account/sign_up.html'
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            user = authenticate(request, username=username, password=password)
+            login(request, user)
+
+            return HttpResponseRedirect(reverse('main'))
+    else:
+        form = SignUpForm()
+    context = {'form': form}
+    return render(request, 'account/sign_up.html', context)
 
 
 def login_view(request):
