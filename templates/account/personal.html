@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Save</button>
+    </form>
+    <hr>
+    <p>{{ person.height }}</p>
+    <p>{{ person.weight }}</p>
+    <p>{{ person.age }}</p>
+    <p>{{ person.get_sex_display }}</p>
+    <hr>
+    <h3 align="center">your needed calorie: {{ person.bmr }} *** your calorie in today:
+        {% if sum_cal %}{{ sum_cal }}{% else %} 0 {% endif %}  </h3>
+{% endblock %}

@@ -7,6 +7,7 @@ class CalorieModel(models.Model):
     name = models.CharField(max_length=50)
     calorie = models.PositiveIntegerField()
     count = models.PositiveIntegerField(default=1)
+
     date = models.DateField(auto_now_add=True, null=True)
 
     def __str__(self):
