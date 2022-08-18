@@ -1057,6 +1057,7 @@ sequence|table|35072|35074|1
     </table>
     <table id="53" parent="26" name="account_person">
       <ObjectId>35074</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>1773</StateNumber>
     </table>

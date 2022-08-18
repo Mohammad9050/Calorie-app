@@ -1,10 +1,14 @@
 {% extends '_base.html' %}
+{% load static %}
 {% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static "Accounts/css/header.css" %}">
     <style>
+
 table {
   width: 30%;
   align-self: center;
   margin-block-end: 28px;
+  margin-inline: 170px
 }
 td, th {
   border: 1px solid #dddddd;
@@ -19,6 +23,21 @@ tr:nth-child(even) {
 
 {% endblock %}
 {% block content %}
+    <div class="header">
+
+  <div class="header-right">
+    <a class="active" href="{% url "main" %}">Home</a>
+      {% if user.is_authenticated %}
+        <a href="{% url "personal" %}">My Diet</a>
+
+
+        <a href="{% url "logout" %}">Logout</a>
+      {% else %}
+          <a href="{% url "login" %}">Sign in</a>
+      {% endif %}
+
+  </div>
+  </div>
     <h2>{{ user }} s</h2>
     <form action="" method="post">
         {% csrf_token %}
@@ -32,10 +51,9 @@ tr:nth-child(even) {
     {% if error %}
         {{ error }}
     {% endif %}
-    <a href="{% url "personal" %}">My Diet</a>
     <hr>
     <br>
-    
+  {% if sum_week %}
     {% if day0 %}
         <table>
                 <tr>
@@ -79,7 +97,7 @@ tr:nth-child(even) {
             {% endfor %}
             <tr>
                 <td>{{ cal1 }}</td>
-            </tr>
+              </tr>
        </table>
     {% endif %}
     {% if day2 %}
@@ -187,6 +205,10 @@ tr:nth-child(even) {
             </tr>
        </table>
     {% endif %}
+  {% else %}
+      <p align="center"><b>Add thing do you eat to see calories of them</b></p>
+  {% endif %}
+
 
 
 {% endblock %}

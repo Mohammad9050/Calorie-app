@@ -1,17 +1,55 @@
 {% extends '_base.html' %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{% static "Accounts/css/header.css" %}">
+    <style>
 
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+    </style>
+{% endblock %}
 {% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
-    <hr>
-    <p>{{ person.height }}</p>
-    <p>{{ person.weight }}</p>
-    <p>{{ person.age }}</p>
-    <p>{{ person.get_sex_display }}</p>
-    <hr>
-    <h3 align="center">your needed calorie: {{ person.bmr }} *** your calorie in today:
+     <div class="header">
+
+  <div class="header-right">
+    <a class="active" href="{% url "main" %}">Home</a>
+      {% if user.is_authenticated %}
+        <a href="{% url "logout" %}">Logout</a>
+      {% else %}
+          <a href="{% url "login" %}">Sign in</a>
+      {% endif %}
+
+  </div>
+  </div>
+    <h2>Your Diet</h2>
+
+    {% if person %}
+        <p>Height : {{ person.height }}</p>
+        <p>Weight : {{ person.weight }}</p>
+        <p>Age : {{ person.age }}</p>
+        <p>Sex : {{ person.get_sex_display }}</p>
+        <a class="button1" href="{% url "edit" %}">Edit</a>
+        <br>
+        <h3 align="center">your needed calorie: {{ person.bmr }} *** your calorie in today:
         {% if sum_cal %}{{ sum_cal }}{% else %} 0 {% endif %}  </h3>
+    {% else %}
+        <p><b>Give your information first <a class="button1" href="{% url "edit" %}">Information</a></b></p>
+    {% endif %}
+
 {% endblock %}
